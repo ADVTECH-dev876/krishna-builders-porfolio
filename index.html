@@ -1,197 +1,1494 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Krishna Builders | Royal Civil Engineering</title>
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Krishna Builders & Real Estate – Build Your Dream</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@1,400;1,700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <style>
+    /* ══════════════════════════════════════════════
+       KRISHNA BUILDERS – style.css  v2
+    ══════════════════════════════════════════════ */
+    :root {
+      --kb-gold:     #b8952a;
+      --kb-gold-lt:  #d4af48;
+      --kb-dark:     #0e0e0e;
+      --kb-dark2:    #181818;
+      --kb-white:    #f8f4ee;
+      --kb-muted:    #9a9080;
+      --kb-green:    #1e5c2a;
+      --kb-green-lt: #2d7a3a;
+      --kb-cream:    #faf6ef;
+      --kb-border:   rgba(184,149,42,.18);
+      --kb-shadow:   0 20px 60px rgba(0,0,0,.12);
+      --transition:  .4s cubic-bezier(.22,.68,0,1.2);
+      --radius:      12px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'DM Sans',sans-serif;font-size:1rem;line-height:1.7;background:var(--kb-cream);color:var(--kb-dark);overflow-x:hidden}
+    em{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--kb-gold)}
+    a{text-decoration:none;color:inherit}
 
-    <style>
-        :root { 
-            --royal-gold: linear-gradient(135deg, #c5a059, #856a37);
-            --deep-onyx: #1a1a1a;
-            --ivory: #fffdfa;
-        }
+    /* ── NAVBAR ── */
+    .kb-nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:.9rem 0;background:transparent;transition:background .4s,padding .4s}
+    .kb-nav.scrolled{background:rgba(14,14,14,.96);backdrop-filter:blur(14px);padding:.5rem 0}
+    .kb-nav__inner{max-width:1300px;margin:auto;padding:0 2rem;display:flex;align-items:center;justify-content:space-between}
+    .kb-nav__brand{display:flex;align-items:center;gap:.6rem}
+    .kb-nav__logo-img{height:46px;width:auto;object-fit:contain;filter:brightness(0) invert(1);transition:filter .3s}
+    .kb-nav.scrolled .kb-nav__logo-img{filter:brightness(0) invert(1)}
+    .kb-nav__builders-text{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;color:#fff;letter-spacing:.04em}
+    .kb-nav__links{list-style:none;display:flex;gap:2rem}
+    .kb-nav__link{font-size:.82rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.75);position:relative;padding-bottom:.2rem;transition:color .3s}
+    .kb-nav__link::after{content:'';position:absolute;bottom:0;left:0;right:100%;height:1.5px;background:var(--kb-gold);transition:right .35s ease}
+    .kb-nav__link:hover,.kb-nav__link.active{color:#fff}
+    .kb-nav__link:hover::after,.kb-nav__link.active::after{right:0}
+    .kb-nav__toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+    .kb-nav__toggle span{display:block;width:26px;height:2px;background:#fff;border-radius:2px;transition:transform .35s,opacity .35s}
+    .kb-nav__toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .kb-nav__toggle.open span:nth-child(2){opacity:0}
+    .kb-nav__toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
-        body { font-family: 'Montserrat', sans-serif; background-color: var(--ivory); color: #333; }
-        h1, h2, h3, .navbar-brand { font-family: 'Cinzel', serif; letter-spacing: 2px; }
+    /* ── HERO ── */
+    .kb-hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+    .kb-hero__bg{position:absolute;inset:0;z-index:0;background:linear-gradient(135deg,#0a0a0a 0%,#1a1208 40%,#0e0c06 100%)}
+    .kb-hero__bg::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1600&auto=format&fit=crop') center/cover no-repeat;opacity:.18}
+    .kb-hero__grain{position:absolute;inset:0;z-index:1;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.06'/%3E%3C/svg%3E");background-size:180px;opacity:.55;pointer-events:none}
+    .kb-hero__lines{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,transparent 49.8%,rgba(184,149,42,.06) 50%,transparent 50.2%),linear-gradient(0deg,transparent 49.8%,rgba(184,149,42,.06) 50%,transparent 50.2%);background-size:80px 80px}
+    .kb-hero__content{position:relative;z-index:2;padding:7rem 2rem 4rem;max-width:900px}
+    .kb-hero__eyebrow{font-size:.75rem;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--kb-gold);margin-bottom:1.2rem}
+    .kb-hero__logo-wrap{margin-bottom:1.5rem}
+    .kb-hero__logo{height:90px;width:auto;margin:0 auto;filter:brightness(0) invert(1) sepia(1) saturate(3) hue-rotate(10deg);animation:logoGlow 3s ease-in-out infinite alternate}
+    @keyframes logoGlow{from{filter:brightness(0) invert(1) sepia(1) saturate(2) hue-rotate(10deg);drop-shadow:0 0 0 transparent}to{filter:brightness(0) invert(1) sepia(1) saturate(4) hue-rotate(5deg)}}
+    .kb-hero__title{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,8vw,6.5rem);font-weight:300;line-height:1.05;color:#fff;margin-bottom:1.2rem}
+    .kb-hero__title em{font-family:'Playfair Display',serif;font-size:inherit;font-weight:700;font-style:italic}
+    .kb-hero__sub{font-size:1rem;color:rgba(255,255,255,.6);line-height:1.9;margin-bottom:2.5rem;letter-spacing:.02em}
+    .kb-hero__cta{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+    .kb-hero__badge{position:absolute;right:5%;bottom:12%;z-index:2}
+    .kb-hero__badge-ring{width:120px;height:120px;position:relative;display:flex;align-items:center;justify-content:center;animation:spin 22s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .kb-hero__badge-text-svg{position:absolute;inset:0;fill:none}
+    .kb-hero__badge-text-svg text{fill:var(--kb-gold);font-size:10.5px;font-family:'DM Sans',sans-serif;letter-spacing:2px}
+    .kb-hero__badge-icon{font-size:1.6rem;color:var(--kb-gold);animation:spinRev 22s linear infinite}
+    @keyframes spinRev{to{transform:rotate(-360deg)}}
+    .kb-hero__scroll{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:.3rem;font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.4);animation:bounce 2.2s ease infinite}
+    .kb-hero__scroll i{font-size:1.1rem}
+    @keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(34px)}to{opacity:1;transform:translateY(0)}}
+    .reveal{animation:fadeUp .9s ease both}
+    .reveal-delay-1{animation:fadeUp .9s .15s ease both}
+    .reveal-delay-2{animation:fadeUp .9s .3s ease both}
+    .reveal-delay-3{animation:fadeUp .9s .45s ease both}
+    .reveal-delay-4{animation:fadeUp .9s .6s ease both}
 
-        /* Navigation */
-        .navbar { background: var(--deep-onyx); border-bottom: 2px solid #c5a059; }
-        .nav-link { color: #fff !important; font-weight: 500; text-transform: uppercase; font-size: 0.9rem; }
-        .nav-link:hover { color: #c5a059 !important; }
+    /* ── BUTTONS ── */
+    .kb-btn{display:inline-flex;align-items:center;justify-content:center;padding:.85rem 2.2rem;font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border-radius:4px;transition:all .35s ease;cursor:pointer;border:none}
+    .kb-btn--primary{background:var(--kb-green);color:#fff}
+    .kb-btn--primary:hover{background:var(--kb-green-lt);transform:translateY(-2px);box-shadow:0 8px 24px rgba(30,92,42,.4);color:#fff}
+    .kb-btn--gold{background:var(--kb-gold);color:var(--kb-dark)}
+    .kb-btn--gold:hover{background:var(--kb-gold-lt);transform:translateY(-2px);box-shadow:0 8px 24px rgba(184,149,42,.4)}
+    .kb-btn--ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.4)}
+    .kb-btn--ghost:hover{border-color:var(--kb-gold);color:var(--kb-gold);transform:translateY(-2px)}
+    .kb-btn--outline{background:transparent;color:var(--kb-green);border:1.5px solid var(--kb-green)}
+    .kb-btn--outline:hover{background:var(--kb-green);color:#fff;transform:translateY(-2px)}
+    .kb-btn--lg{padding:1rem 2.6rem;font-size:.95rem}
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                        url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070');
-            background-size: cover; background-position: center;
-            height: 90vh; color: white; display: flex; align-items: center;
-        }
+    /* ── SECTION COMMONS ── */
+    .kb-section{padding:7rem 0}
+    .kb-section__header{text-align:center;margin-bottom:4rem}
+    .kb-section__tag{display:inline-block;font-size:.7rem;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--kb-gold);background:rgba(184,149,42,.1);padding:.3rem .9rem;border-radius:30px;margin-bottom:1rem}
+    .kb-section__title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5vw,3.5rem);font-weight:400;line-height:1.1;color:var(--kb-dark);margin-bottom:.9rem}
+    .kb-section__header--light .kb-section__title{color:#fff}
+    .kb-section__header--light .kb-section__desc{color:rgba(255,255,255,.55)}
+    .kb-section__desc{font-size:1.05rem;color:var(--kb-muted);max-width:580px;margin:0 auto}
 
-        .gold-text { background: var(--royal-gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: bold; }
-        
-        /* Royal Buttons */
-        .btn-royal {
-            background: var(--royal-gold); border: none; color: white;
-            padding: 12px 35px; text-transform: uppercase; font-weight: 700;
-            letter-spacing: 1px; transition: 0.4s;
-        }
-        .btn-royal:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(133, 106, 55, 0.4); color: white; }
+    /* ── SERVICES ── */
+    .kb-services{background:var(--kb-cream)}
+    .kb-service-card{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:var(--radius);padding:2.2rem 1.8rem;height:100%;position:relative;overflow:hidden;cursor:default}
+    .kb-service-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--kb-green) 0%,var(--kb-green-lt) 100%);opacity:0;transition:opacity .4s;border-radius:var(--radius)}
+    .kb-service-card:hover::before{opacity:1}
+    .kb-service-card:hover .kb-service-card__icon,.kb-service-card:hover h3,.kb-service-card:hover p{color:#fff}
+    .kb-service-card:hover .kb-service-card__line{background:rgba(255,255,255,.4);width:60px}
+    .kb-service-card__icon{font-size:2.2rem;color:var(--kb-green);margin-bottom:1.1rem;position:relative;z-index:1;transition:color .4s}
+    .kb-service-card h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:var(--kb-dark);margin-bottom:.7rem;position:relative;z-index:1;transition:color .4s}
+    .kb-service-card p{font-size:.9rem;color:var(--kb-muted);line-height:1.7;position:relative;z-index:1;transition:color .4s}
+    .kb-service-card__line{height:2px;width:36px;background:var(--kb-gold);margin-top:1.2rem;position:relative;z-index:1;transition:background .4s,width .4s}
 
-        /* Service Cards */
-        .service-card {
-            background: white; border: 1px solid rgba(197, 160, 89, 0.2);
-            transition: 0.4s; border-radius: 0;
-        }
-        .service-card:hover {
-            border-color: #c5a059; transform: scale(1.02);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
-        }
-        .icon-box {
-            width: 70px; height: 70px; background: var(--royal-gold);
-            margin: 0 auto 20px; display: flex; align-items: center;
-            justify-content: center; color: white; font-size: 1.8rem;
-        }
+    /* ── REAL ESTATE ── */
+    .kb-realestate{background:#fff}
+    .kb-re-tabs{display:flex;gap:.5rem;justify-content:center;margin-bottom:2.5rem;flex-wrap:wrap}
+    .kb-re-tab{background:transparent;border:1.5px solid rgba(0,0,0,.12);border-radius:30px;padding:.55rem 1.5rem;font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .3s;color:var(--kb-muted)}
+    .kb-re-tab.active{background:var(--kb-green);border-color:var(--kb-green);color:#fff}
+    .kb-re-tab:hover:not(.active){border-color:var(--kb-green);color:var(--kb-green)}
 
-        /* Portfolio/Gallery */
-        .project-img {
-            height: 300px; object-fit: cover; width: 100%;
-            filter: grayscale(40%); transition: 0.5s;
-        }
-        .project-img:hover { filter: grayscale(0%); transform: scale(1.05); }
+    .kb-property-card{background:var(--kb-cream);border:1px solid rgba(0,0,0,.07);border-radius:var(--radius);overflow:hidden;transition:transform .4s var(--transition),box-shadow .4s;height:100%}
+    .kb-property-card:hover{transform:translateY(-8px);box-shadow:var(--kb-shadow)}
+    .kb-property-card--featured{border-color:var(--kb-gold);box-shadow:0 0 0 1px var(--kb-gold),0 12px 40px rgba(184,149,42,.12)}
+    .kb-property-card--featured:hover{transform:translateY(-12px);box-shadow:0 0 0 1px var(--kb-gold),0 24px 60px rgba(184,149,42,.2)}
+    .kb-property-card__img{height:200px;background-size:cover;background-position:center;position:relative}
+    .kb-property-card__img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.5) 0%,transparent 60%)}
+    .kb-property-card__status{position:absolute;top:.75rem;left:.75rem;z-index:1;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .8rem;border-radius:30px}
+    .kb-property-card__status--sale{background:var(--kb-green);color:#fff}
+    .kb-property-card__status--rent{background:var(--kb-gold);color:var(--kb-dark)}
+    .kb-property-card__status--new{background:#c0392b;color:#fff}
+    .kb-property-card__type{position:absolute;bottom:.75rem;left:.75rem;z-index:1;font-size:.7rem;font-weight:600;color:rgba(255,255,255,.85);background:rgba(0,0,0,.45);padding:.2rem .6rem;border-radius:4px}
+    .kb-property-card__body{padding:1.4rem}
+    .kb-property-card__body h3{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:600;color:var(--kb-dark);margin-bottom:.3rem}
+    .kb-property-card__loc{font-size:.82rem;color:var(--kb-muted);margin-bottom:.9rem;display:flex;align-items:center;gap:.3rem}
+    .kb-property-card__loc i{color:var(--kb-green)}
+    .kb-property-card__specs{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1rem}
+    .kb-property-card__specs span{font-size:.75rem;background:rgba(0,0,0,.05);border-radius:4px;padding:.2rem .55rem;display:flex;align-items:center;gap:.3rem;color:var(--kb-dark)}
+    .kb-property-card__specs i{color:var(--kb-green);font-size:.8rem}
+    .kb-property-card__price{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:var(--kb-green)}
 
-        /* Contact Section */
-        .contact-box { background: var(--deep-onyx); color: white; padding: 50px; border-left: 5px solid #c5a059; }
+    .kb-re-banner{background:linear-gradient(135deg,var(--kb-green) 0%,var(--kb-green-lt) 100%);border-radius:var(--radius);padding:2.5rem 2rem;display:flex;align-items:center;gap:2rem;flex-wrap:wrap;margin-top:3.5rem}
+    .kb-re-banner__content{flex:1}
+    .kb-re-banner__content h3{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:600;color:#fff;margin-bottom:.4rem}
+    .kb-re-banner__content em{color:var(--kb-gold-lt)}
+    .kb-re-banner__content p{color:rgba(255,255,255,.75);font-size:.95rem}
 
-        .whatsapp-float {
-            position: fixed; bottom: 30px; right: 30px;
-            background: #c5a059; color: white; width: 60px; height: 60px;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 28px; text-decoration: none; z-index: 1000;
-        }
-    </style>
+    /* ── PROJECTS ── */
+    .kb-projects{position:relative;padding-bottom:0}
+    .kb-projects__bg{position:absolute;inset:0;background:linear-gradient(160deg,var(--kb-dark) 0%,#1a1208 100%)}
+    .kb-project-card{background:var(--kb-dark2);border-radius:var(--radius);overflow:hidden;border:1px solid rgba(255,255,255,.06);transition:transform .45s var(--transition),box-shadow .45s}
+    .kb-project-card:hover{transform:translateY(-10px);box-shadow:0 32px 80px rgba(0,0,0,.5)}
+    .kb-project-card--featured{transform:translateY(-16px);border-color:var(--kb-gold);box-shadow:0 0 0 1px var(--kb-gold),0 24px 60px rgba(184,149,42,.18)}
+    .kb-project-card--featured:hover{transform:translateY(-24px)}
+    .kb-project-card__img{height:220px;background-size:cover;background-position:center;position:relative;overflow:hidden}
+    .kb-project-card__img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 60%)}
+    .kb-project-card__overlay{position:absolute;top:.8rem;left:.8rem;z-index:1}
+    .kb-project-card__badge{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--kb-gold);color:var(--kb-dark);padding:.25rem .75rem;border-radius:30px}
+    .kb-project-card__body{padding:1.6rem}
+    .kb-project-card__body h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:#fff;margin-bottom:.7rem}
+    .kb-project-card__body p{font-size:.88rem;color:rgba(255,255,255,.5);margin-bottom:1.2rem;line-height:1.7}
+    .kb-project-card__meta{list-style:none;display:flex;flex-direction:column;gap:.4rem}
+    .kb-project-card__meta li{font-size:.82rem;color:rgba(255,255,255,.6);display:flex;align-items:center;gap:.5rem}
+    .kb-project-card__meta li i{color:var(--kb-gold)}
+
+    .kb-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:5rem;background:var(--kb-gold);border-radius:var(--radius) var(--radius) 0 0}
+    .kb-stat{text-align:center;padding:2.5rem 1rem;border-right:1px solid rgba(0,0,0,.12)}
+    .kb-stat:last-child{border-right:none}
+    .kb-stat__num{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:700;color:var(--kb-dark);line-height:1}
+    .kb-stat__plus{font-size:1.8rem;font-weight:700;color:var(--kb-dark)}
+    .kb-stat p{font-size:.8rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(0,0,0,.6);margin-top:.3rem}
+
+    /* ── QUOTATION ── */
+    .kb-quotation{background:var(--kb-cream)}
+    .kb-price-card{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:var(--radius);padding:2.4rem 2rem;height:100%;position:relative;transition:transform .4s var(--transition),box-shadow .4s}
+    .kb-price-card:hover{transform:translateY(-8px);box-shadow:var(--kb-shadow)}
+    .kb-price-card--popular{background:var(--kb-dark);border-color:var(--kb-gold);transform:scale(1.03)}
+    .kb-price-card--popular:hover{transform:scale(1.03) translateY(-8px)}
+    .kb-price-card__ribbon{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--kb-gold);color:var(--kb-dark);font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:.3rem 1.1rem;border-radius:30px}
+    .kb-price-card__head{margin-bottom:2rem;text-align:center}
+    .kb-price-card__tier{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--kb-gold);margin-bottom:.6rem}
+    .kb-price-card__rate{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:700;color:var(--kb-dark);line-height:1.1}
+    .kb-price-card--popular .kb-price-card__rate{color:#fff}
+    .kb-price-card__rate span{font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:400;color:var(--kb-muted)}
+    .kb-price-card__head p{font-size:.88rem;color:var(--kb-muted);margin-top:.5rem}
+    .kb-price-card--popular .kb-price-card__head p{color:rgba(255,255,255,.5)}
+    .kb-price-card__features{list-style:none;margin-bottom:2rem;display:flex;flex-direction:column;gap:.7rem}
+    .kb-price-card__features li{display:flex;align-items:center;gap:.6rem;font-size:.9rem;color:var(--kb-dark)}
+    .kb-price-card--popular .kb-price-card__features li{color:rgba(255,255,255,.8)}
+    .kb-price-card__features li i{color:var(--kb-green);font-size:1rem}
+    .kb-price-card__feat--off{opacity:.4}
+    .kb-price-card__feat--off i{color:var(--kb-muted)!important}
+    .kb-quote-table-wrap{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:var(--radius);padding:2.5rem 2rem}
+    .kb-quote-table-wrap__title{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;color:var(--kb-dark);margin-bottom:1.5rem}
+    .kb-quote-table-wrap__title span{font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:400;color:var(--kb-muted)}
+    .kb-quote-table thead th{background:var(--kb-dark);color:var(--kb-gold);font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.9rem 1rem;border:none}
+    .kb-quote-table tbody tr td{padding:.8rem 1rem;font-size:.9rem;color:var(--kb-dark);border-bottom:1px solid rgba(0,0,0,.05);vertical-align:middle}
+    .kb-quote-table tbody tr:hover td{background:rgba(184,149,42,.05)}
+    .kb-quote-table__total td{background:rgba(30,92,42,.06)!important;font-weight:700;color:var(--kb-green)!important;font-size:1rem!important}
+    .kb-quote-note{font-size:.8rem;color:var(--kb-muted);margin-top:1rem;border-top:1px solid rgba(0,0,0,.07);padding-top:1rem}
+
+    /* ── CONTACT ── */
+    .kb-contact{position:relative}
+    .kb-contact__bg{position:absolute;inset:0;background:linear-gradient(150deg,#0e0e0e 0%,#1a1208 100%)}
+    .kb-ai-banner{display:flex;align-items:center;gap:1.5rem;background:rgba(184,149,42,.1);border:1px solid var(--kb-border);border-radius:var(--radius);padding:1.5rem 2rem;margin-bottom:2rem;flex-wrap:wrap}
+    .kb-ai-banner__icon{font-size:2.5rem;color:var(--kb-gold);flex-shrink:0}
+    .kb-ai-banner__text{flex:1}
+    .kb-ai-banner__text h4{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:#fff;margin-bottom:.2rem}
+    .kb-ai-banner__text p{font-size:.88rem;color:rgba(255,255,255,.55)}
+    .kb-chat-box{background:var(--kb-dark2);border:1px solid var(--kb-border);border-radius:var(--radius);overflow:hidden;margin-bottom:2.5rem;animation:fadeUp .4s ease}
+    .kb-chat-box__header{display:flex;align-items:center;gap:1rem;padding:1rem 1.4rem;background:rgba(184,149,42,.1);border-bottom:1px solid var(--kb-border)}
+    .kb-chat-box__avatar{width:36px;height:36px;background:var(--kb-gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--kb-dark);font-size:1rem;flex-shrink:0}
+    .kb-chat-box__header h5{color:#fff;font-size:.95rem;margin:0}
+    .kb-chat-box__header span{font-size:.72rem;color:var(--kb-gold);letter-spacing:.05em}
+    .kb-chat-box__close{margin-left:auto;background:none;border:none;color:rgba(255,255,255,.5);cursor:pointer;font-size:1rem;padding:.25rem;transition:color .3s}
+    .kb-chat-box__close:hover{color:#fff}
+    .kb-chat-box__messages{height:280px;overflow-y:auto;padding:1.2rem;display:flex;flex-direction:column;gap:.9rem}
+    .kb-chat-box__messages::-webkit-scrollbar{width:4px}
+    .kb-chat-box__messages::-webkit-scrollbar-thumb{background:rgba(184,149,42,.3);border-radius:2px}
+    .kb-chat-msg{display:flex}
+    .kb-chat-msg--bot{justify-content:flex-start}
+    .kb-chat-msg--user{justify-content:flex-end}
+    .kb-chat-msg__bubble{max-width:78%;padding:.75rem 1rem;border-radius:12px;font-size:.88rem;line-height:1.5}
+    .kb-chat-msg--bot .kb-chat-msg__bubble{background:rgba(255,255,255,.07);color:rgba(255,255,255,.85);border-bottom-left-radius:4px}
+    .kb-chat-msg--user .kb-chat-msg__bubble{background:var(--kb-green);color:#fff;border-bottom-right-radius:4px}
+    .kb-chat-msg--typing .kb-chat-msg__bubble{padding:.9rem 1.2rem}
+    .kb-typing-dot{display:inline-block;width:6px;height:6px;background:var(--kb-gold);border-radius:50%;margin:0 2px;animation:typingBounce 1.2s infinite}
+    .kb-typing-dot:nth-child(2){animation-delay:.2s}
+    .kb-typing-dot:nth-child(3){animation-delay:.4s}
+    @keyframes typingBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+    .kb-chat-box__input-row{display:flex;gap:.5rem;padding:.9rem 1rem;border-top:1px solid rgba(255,255,255,.06)}
+    .kb-chat-input{flex:1;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:.65rem 1rem;color:#fff;font-family:'DM Sans',sans-serif;font-size:.9rem;outline:none;transition:border-color .3s}
+    .kb-chat-input::placeholder{color:rgba(255,255,255,.25)}
+    .kb-chat-input:focus{border-color:var(--kb-gold)}
+    .kb-chat-send{background:var(--kb-gold);border:none;color:var(--kb-dark);border-radius:8px;padding:.65rem 1rem;cursor:pointer;font-size:1rem;transition:background .3s,transform .2s}
+    .kb-chat-send:hover{background:var(--kb-gold-lt);transform:scale(1.05)}
+    .kb-form-tabs{display:flex;gap:.5rem;margin-bottom:1.8rem;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:1rem}
+    .kb-form-tab{background:transparent;border:1.5px solid rgba(255,255,255,.12);border-radius:8px;padding:.65rem 1.2rem;font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:600;letter-spacing:.05em;cursor:pointer;color:rgba(255,255,255,.5);transition:all .3s;display:flex;align-items:center;gap:.5rem}
+    .kb-form-tab.active{background:var(--kb-green);border-color:var(--kb-green);color:#fff}
+    .kb-form-tab:hover:not(.active){border-color:var(--kb-gold);color:var(--kb-gold)}
+    .kb-contact__info{display:flex;flex-direction:column;gap:1.4rem}
+    .kb-contact__info-card{display:flex;align-items:flex-start;gap:1.2rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:1.2rem 1.4rem;transition:border-color .3s,background .3s}
+    .kb-contact__info-card:hover{border-color:var(--kb-gold);background:rgba(184,149,42,.06)}
+    .kb-contact__info-card>i{font-size:1.3rem;color:var(--kb-gold);flex-shrink:0;margin-top:.2rem}
+    .kb-contact__info-card h4{font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--kb-gold);margin-bottom:.25rem}
+    .kb-contact__info-card p,.kb-contact__info-card a{font-size:.95rem;color:rgba(255,255,255,.7);line-height:1.5}
+    .kb-contact__info-card a:hover{color:var(--kb-gold-lt)}
+    .kb-contact__hours{background:rgba(184,149,42,.08);border:1px solid var(--kb-border);border-radius:10px;padding:1.2rem 1.4rem}
+    .kb-contact__hours h4{font-size:.75rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--kb-gold);margin-bottom:.5rem;display:flex;gap:.5rem;align-items:center}
+    .kb-contact__hours p{font-size:.9rem;color:rgba(255,255,255,.6);margin:.2rem 0}
+    .kb-contact__form-wrap{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:2.5rem}
+    .kb-label{display:block;font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:.5rem}
+    .kb-input{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:.85rem 1rem;font-family:'DM Sans',sans-serif;font-size:.95rem;color:#fff;outline:none;transition:border-color .3s,background .3s;-webkit-appearance:none}
+    .kb-input::placeholder{color:rgba(255,255,255,.25)}
+    .kb-input:focus{border-color:var(--kb-gold);background:rgba(255,255,255,.1)}
+    select.kb-input option{background:var(--kb-dark2);color:#fff}
+    textarea.kb-input{resize:vertical;min-height:100px}
+    .kb-contact__success{text-align:center;padding:3rem;color:#fff}
+    .kb-contact__success i{font-size:3rem;color:var(--kb-gold);display:block;margin-bottom:1rem}
+    .kb-contact__success h4{font-family:'Cormorant Garamond',serif;font-size:1.8rem;margin-bottom:.5rem}
+    .kb-contact__success p{color:rgba(255,255,255,.6)}
+
+    /* ── FOOTER ── */
+    .kb-footer{background:#080808;padding:4rem 0 1.5rem}
+    .kb-footer__top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,.06);margin-bottom:2rem}
+    .kb-footer__logo-img{height:56px;width:auto;filter:brightness(0) invert(1) sepia(1) saturate(2) hue-rotate(10deg);margin-bottom:.8rem}
+    .kb-footer__brand p{font-size:.9rem;color:rgba(255,255,255,.4);margin-top:.4rem}
+    .kb-footer__tagline{color:var(--kb-gold)!important;margin-top:.6rem!important;font-style:italic}
+    .kb-footer__links h5,.kb-footer__contact h5{font-size:.7rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--kb-gold);margin-bottom:1rem}
+    .kb-footer__links{display:flex;flex-direction:column;gap:.6rem}
+    .kb-footer__links a{font-size:.9rem;color:rgba(255,255,255,.5);transition:color .3s}
+    .kb-footer__links a:hover{color:var(--kb-gold-lt)}
+    .kb-footer__contact p{font-size:.88rem;color:rgba(255,255,255,.5);display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem}
+    .kb-footer__contact p i{color:var(--kb-gold)}
+    .kb-footer__bottom{text-align:center;font-size:.78rem;color:rgba(255,255,255,.25)}
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:991px){
+      .kb-nav__links{position:fixed;inset:0;top:65px;background:rgba(10,10,10,.98);backdrop-filter:blur(14px);flex-direction:column;gap:0;align-items:center;justify-content:center;transform:translateX(100%);transition:transform .4s ease}
+      .kb-nav__links.open{transform:none}
+      .kb-nav__link{font-size:1.2rem;padding:1.1rem;border-bottom:1px solid rgba(255,255,255,.06);width:100%;text-align:center}
+      .kb-nav__toggle{display:flex}
+      .kb-hero__badge{display:none}
+      .kb-stats{grid-template-columns:repeat(2,1fr)}
+      .kb-stat{border-right:none;border-bottom:1px solid rgba(0,0,0,.12)}
+      .kb-footer__top{grid-template-columns:1fr 1fr}
+      .kb-re-banner{flex-direction:column;text-align:center}
+    }
+    @media(max-width:767px){
+      .kb-section{padding:5rem 0}
+      .kb-price-card--popular{transform:none}
+      .kb-footer__top{grid-template-columns:1fr;gap:2rem}
+      .kb-contact__form-wrap{padding:1.5rem}
+      .kb-form-tabs{flex-direction:column}
+      .kb-ai-banner{flex-direction:column;text-align:center}
+    }
+
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      20%      { transform: translateX(-8px); }
+      40%      { transform: translateX(8px); }
+      60%      { transform: translateX(-5px); }
+      80%      { transform: translateX(5px); }
+    }
+
+    .kb-toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 9999;
+      background: #2d7a3a;
+      color: #fff;
+      padding: .9rem 1.4rem;
+      border-radius: 8px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .9rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,.3);
+      animation: fadeUp .4s ease both;
+      max-width: 320px;
+    }
+  </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg sticky-top">
-        <div class="container">
-            <a class="navbar-brand" href="#"><span class="text-white">Krishna</span> <span class="gold-text">Builders</span></a>
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="bi bi-list text-white fs-1"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <section id="home" class="hero">
-        <div class="container text-center text-md-start">
-            <div class="row">
-                <div class="col-lg-8">
-                    <h5 class="text-uppercase mb-3" style="letter-spacing: 5px;">Excellence in Engineering</h5>
-                    <h1 class="display-2 fw-bold mb-4">K.S. <span class="gold-text">KRISHNA</span></h1>
-                    <p class="lead mb-5 opacity-75">Licensed Government Surveyor & Civil Engineer. Turning complex blueprints into royal landmarks for over 4 years.</p>
-                    <a href="#contact" class="btn btn-royal">Consult Now</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="services" class="py-5">
-        <div class="container py-5">
-            <div class="text-center mb-5">
-                <h2 class="fw-bold text-uppercase">Our Royal Expertise</h2>
-                <p class="text-muted">Mastering every dimension of construction</p>
-            </div>
-            <div class="row g-4 text-center">
-                <div class="col-md-4">
-                    <div class="card p-5 service-card h-100">
-                        <div class="icon-box"><i class="bi bi-vector-pen"></i></div>
-                        <h4>2D & 3D Planning</h4>
-                        <p class="small text-muted">Architectural precision with immersive 3D walkthroughs.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card p-5 service-card h-100">
-                        <div class="icon-box"><i class="bi bi-patch-check"></i></div>
-                        <h4>Approval Plan</h4>
-                        <p class="small text-muted">Expert navigation of DTCP & Local Body approvals.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card p-5 service-card h-100">
-                        <div class="icon-box"><i class="bi bi-map"></i></div>
-                        <h4>Land Survey</h4>
-                        <p class="small text-muted">Govt. Approved precision surveying and documentation.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects" class="py-5 bg-white">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="fw-bold">FEATURED WORKS</h2>
-            </div>
-            <div class="row g-0">
-                <div class="col-md-4 overflow-hidden"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=600" class="project-img" alt="Luxury Home"></div>
-                <div class="col-md-4 overflow-hidden"><img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=600" class="project-img" alt="Elevation Design"></div>
-                <div class="col-md-4 overflow-hidden"><img src="data:image/jpeg;base64,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" class="project-img" alt="Interior Design"></div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="py-5">
-        <div class="container py-5">
-            <div class="row align-items-stretch shadow-lg g-0">
-                <div class="col-lg-6 contact-box">
-                    <h2 class="gold-text mb-4">Get In Touch</h2>
-                    <p class="mb-5">Visit our office in Salem for a detailed consultation regarding your project.</p>
-                    
-                    <div class="mb-4">
-                        <h6 class="text-uppercase gold-text small">Location</h6>
-                        <p>14, Dharmalingam St No: 2, Line Medu, Salem - 636006</p>
-                    </div>
-                    <div class="mb-4">
-                        <h6 class="text-uppercase gold-text small">Call Us</h6>
-                        <p>+91 86672 23021 | +91 77081 72800  </p>
-                    </div>
-                    <div class="mb-4">
-                        <h6 class="text-uppercase gold-text small">Email</h6>
-                        <p>krishcivil1697@gmail.com</p>
-                    </div>
-                    <div class="mt-5">
-                        <a href="https://www.instagram.com/krishna_builders_1" class="text-white me-3 fs-4"><i class="bi bi-instagram"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3907.6714418645025!2d78.1466!3d11.6643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTHCsDM5JzUxLjUiTiA3OMKwMDgnNDcuOCJF!5e0!3m2!1sen!2sin!4v1700000000000" 
-                        width="100%" height="100%" style="border:0; min-height: 400px;" allowfullscreen="" loading="lazy"></iframe>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="py-4 text-center bg-dark text-white-50">
-        <p class="small mb-0">© 2026 KRISHNA BUILDERS. ALL RIGHTS RESERVED.</p>
-    </footer>
-
-    <a href="https://wa.me/9186672 23021" class="whatsapp-float">
-        <i class="bi bi-whatsapp"></i>
+<!-- ══════════════════════════ NAVBAR ══════════════════════════ -->
+<nav class="kb-nav" id="mainNav">
+  <div class="kb-nav__inner">
+    <a class="kb-nav__brand" href="#home">
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23b8952a'/%3E%3Ctext x='50' y='68' font-size='52' text-anchor='middle' fill='%23fff' font-family='Arial' font-weight='bold'%3EKB%3C/text%3E%3C/svg%3E" alt="Krishna Builders Logo" class="kb-nav__logo-img" />
+      <span class="kb-nav__builders-text">Krishna Builders</span>
     </a>
+    <button class="kb-nav__toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="kb-nav__links" id="navLinks">
+      <li><a href="#home"      class="kb-nav__link active">Home</a></li>
+      <li><a href="#services"  class="kb-nav__link">Services</a></li>
+      <li><a href="#realestate"class="kb-nav__link">Real Estate</a></li>
+      <li><a href="#projects"  class="kb-nav__link">Projects</a></li>
+      <li><a href="#quotation" class="kb-nav__link">Quotation</a></li>
+      <li><a href="#contact"   class="kb-nav__link">Contact</a></li>
+    </ul>
+  </div>
+</nav>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- ══════════════════════════ HOME ══════════════════════════ -->
+<section class="kb-hero" id="home">
+  <div class="kb-hero__bg">
+    <div class="kb-hero__grain"></div>
+    <div class="kb-hero__lines"></div>
+  </div>
+  <div class="kb-hero__content">
+    <p class="kb-hero__eyebrow reveal">Construction &amp; Real Estate · Salem, Tamil Nadu</p>
+    <div class="kb-hero__logo-wrap reveal-delay-1">
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23b8952a'/%3E%3Ctext x='50' y='68' font-size='52' text-anchor='middle' fill='%23fff' font-family='Arial' font-weight='bold'%3EKB%3C/text%3E%3C/svg%3E" alt="Krishna Builders" class="kb-hero__logo" />
+    </div>
+    <h1 class="kb-hero__title reveal-delay-2">
+      <em>Build</em> Your Dream
+    </h1>
+    <p class="kb-hero__sub reveal-delay-3">
+      Civil Engineering · Structural Design · Interior Solutions · Real Estate<br/>
+      Licensed Building Surveyor – Er. K.S. Krishna B.E.
+    </p>
+    <div class="kb-hero__cta reveal-delay-4">
+      <a href="#services"   class="kb-btn kb-btn--primary">Our Services</a>
+      <a href="#realestate" class="kb-btn kb-btn--gold">Real Estate</a>
+      <a href="#contact"    class="kb-btn kb-btn--ghost">Get a Quote</a>
+    </div>
+  </div>
+  <div class="kb-hero__badge reveal-delay-4">
+    <div class="kb-hero__badge-ring">
+      <svg viewBox="0 0 120 120" class="kb-hero__badge-text-svg">
+        <path id="circle" d="M 60,60 m -45,0 a 45,45 0 1,1 90,0 a 45,45 0 1,1 -90,0"/>
+        <text><textPath href="#circle" startOffset="0%">KRISHNA BUILDERS · BUILD YOUR DREAM · SALEM ·</textPath></text>
+      </svg>
+      <span class="kb-hero__badge-icon"><i class="bi bi-building"></i></span>
+    </div>
+  </div>
+  <a href="#services" class="kb-hero__scroll">
+    <span>Scroll</span><i class="bi bi-arrow-down-long"></i>
+  </a>
+</section>
+
+<!-- ══════════════════════════ SERVICES ══════════════════════════ -->
+<section class="kb-section kb-services" id="services">
+  <div class="container">
+    <div class="kb-section__header">
+      <span class="kb-section__tag">What We Do</span>
+      <h2 class="kb-section__title">Our <em>Services</em></h2>
+      <p class="kb-section__desc">End-to-end construction &amp; real estate solutions tailored to every vision and budget.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div class="kb-service-card" data-delay="0">
+          <div class="kb-service-card__icon"><i class="bi bi-file-earmark-check"></i></div>
+          <h3>Approval Plan</h3>
+          <p>Streamlined government plan approvals for residential and commercial buildings with full documentation support.</p>
+          <div class="kb-service-card__line"></div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div class="kb-service-card" data-delay="1">
+          <div class="kb-service-card__icon"><i class="bi bi-layers"></i></div>
+          <h3>2D &amp; 3D Plan</h3>
+          <p>Precise architectural drawings and photo-realistic 3D renders to visualise your project before groundbreaking.</p>
+          <div class="kb-service-card__line"></div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div class="kb-service-card" data-delay="2">
+          <div class="kb-service-card__icon"><i class="bi bi-calculator"></i></div>
+          <h3>Estimation</h3>
+          <p>Detailed material and labour cost estimates that keep projects on schedule and within budget — no surprises.</p>
+          <div class="kb-service-card__line"></div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div class="kb-service-card" data-delay="3">
+          <div class="kb-service-card__icon"><i class="bi bi-image"></i></div>
+          <h3>Elevation</h3>
+          <p>Stunning façade designs — classical, contemporary, or fusion — that give your property its distinct identity.</p>
+          <div class="kb-service-card__line"></div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div class="kb-service-card" data-delay="4">
+          <div class="kb-service-card__icon"><i class="bi bi-person-badge"></i></div>
+          <h3>Building Consultant</h3>
+          <p>Expert advisory at every phase — site selection, design, construction, and handover — for informed decisions.</p>
+          <div class="kb-service-card__line"></div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div class="kb-service-card" data-delay="5">
+          <div class="kb-service-card__icon"><i class="bi bi-columns-gap"></i></div>
+          <h3>Structural Design</h3>
+          <p>Safe, code-compliant structural engineering designed to endure decades with optimised material usage.</p>
+          <div class="kb-service-card__line"></div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div class="kb-service-card" data-delay="6">
+          <div class="kb-service-card__icon"><i class="bi bi-house-heart"></i></div>
+          <h3>Building Interior Design</h3>
+          <p>Thoughtful interior spaces that balance aesthetics and functionality — from concept boards to final finishes.</p>
+          <div class="kb-service-card__line"></div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div class="kb-service-card" data-delay="7">
+          <div class="kb-service-card__icon"><i class="bi bi-map"></i></div>
+          <h3>Land Survey</h3>
+          <p>Certified land surveys for boundary demarcation, site measurement, and legal property documentation.</p>
+          <div class="kb-service-card__line"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ REAL ESTATE ══════════════════════════ -->
+<section class="kb-section kb-realestate" id="realestate">
+  <div class="container">
+    <div class="kb-section__header">
+      <span class="kb-section__tag">Real Estate</span>
+      <h2 class="kb-section__title">Buy &amp; Sell <em>Properties</em></h2>
+      <p class="kb-section__desc">Premium plots, residential villas, and commercial spaces across Salem. Your trusted property partner.</p>
+    </div>
+
+    <!-- Property Type Tabs -->
+    <div class="kb-re-tabs">
+      <button class="kb-re-tab active" data-tab="plots">Plots &amp; Land</button>
+      <button class="kb-re-tab" data-tab="villas">Villas &amp; Homes</button>
+      <button class="kb-re-tab" data-tab="commercial">Commercial</button>
+    </div>
+
+    <!-- Plots -->
+    <div class="kb-re-panel" id="tab-plots">
+      <div class="row g-4">
+        <div class="col-12 col-md-4">
+          <div class="kb-property-card">
+            <div class="kb-property-card__img" style="background-image:url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&auto=format&fit=crop')">
+              <span class="kb-property-card__status kb-property-card__status--sale">For Sale</span>
+              <span class="kb-property-card__type">Residential Plot</span>
+            </div>
+            <div class="kb-property-card__body">
+              <h3>Kaveri Nagar Plot</h3>
+              <p class="kb-property-card__loc"><i class="bi bi-geo-alt-fill"></i> Alagapuram, Salem</p>
+              <div class="kb-property-card__specs">
+                <span><i class="bi bi-rulers"></i> 2,400 sq.ft</span>
+                <span><i class="bi bi-signpost-2"></i> North Facing</span>
+                <span><i class="bi bi-check2-circle"></i> DTCP Approved</span>
+              </div>
+              <div class="kb-property-card__price">₹ 18,00,000</div>
+              <a href="#contact" class="kb-btn kb-btn--outline w-100 mt-3">Enquire Now</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="kb-property-card kb-property-card--featured">
+            <div class="kb-property-card__img" style="background-image:url('https://images.unsplash.com/photo-1508193638397-1c4234db14d8?w=600&auto=format&fit=crop')">
+              <span class="kb-property-card__status kb-property-card__status--sale">For Sale</span>
+              <span class="kb-property-card__type">Corner Plot</span>
+            </div>
+            <div class="kb-property-card__body">
+              <h3>Green Valley Plot</h3>
+              <p class="kb-property-card__loc"><i class="bi bi-geo-alt-fill"></i> Fairlands, Salem</p>
+              <div class="kb-property-card__specs">
+                <span><i class="bi bi-rulers"></i> 3,600 sq.ft</span>
+                <span><i class="bi bi-signpost-2"></i> East Facing</span>
+                <span><i class="bi bi-check2-circle"></i> RERA Approved</span>
+              </div>
+              <div class="kb-property-card__price">₹ 32,00,000</div>
+              <a href="#contact" class="kb-btn kb-btn--primary w-100 mt-3">Enquire Now</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="kb-property-card">
+            <div class="kb-property-card__img" style="background-image:url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&auto=format&fit=crop')">
+              <span class="kb-property-card__status kb-property-card__status--new">New Launch</span>
+              <span class="kb-property-card__type">Agricultural Land</span>
+            </div>
+            <div class="kb-property-card__body">
+              <h3>Omalur Highway Land</h3>
+              <p class="kb-property-card__loc"><i class="bi bi-geo-alt-fill"></i> Omalur Road, Salem</p>
+              <div class="kb-property-card__specs">
+                <span><i class="bi bi-rulers"></i> 1.2 Acres</span>
+                <span><i class="bi bi-signpost-2"></i> Highway Access</span>
+                <span><i class="bi bi-check2-circle"></i> Patta Available</span>
+              </div>
+              <div class="kb-property-card__price">₹ 45,00,000</div>
+              <a href="#contact" class="kb-btn kb-btn--outline w-100 mt-3">Enquire Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Villas -->
+    <div class="kb-re-panel d-none" id="tab-villas">
+      <div class="row g-4">
+        <div class="col-12 col-md-4">
+          <div class="kb-property-card">
+            <div class="kb-property-card__img" style="background-image:url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&auto=format&fit=crop')">
+              <span class="kb-property-card__status kb-property-card__status--sale">For Sale</span>
+              <span class="kb-property-card__type">3BHK Villa</span>
+            </div>
+            <div class="kb-property-card__body">
+              <h3>Shanti Villa</h3>
+              <p class="kb-property-card__loc"><i class="bi bi-geo-alt-fill"></i> Shevapet, Salem</p>
+              <div class="kb-property-card__specs">
+                <span><i class="bi bi-house"></i> 3 BHK</span>
+                <span><i class="bi bi-rulers"></i> 1,800 sq.ft</span>
+                <span><i class="bi bi-car-front"></i> Car Parking</span>
+              </div>
+              <div class="kb-property-card__price">₹ 58,00,000</div>
+              <a href="#contact" class="kb-btn kb-btn--outline w-100 mt-3">Enquire Now</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="kb-property-card kb-property-card--featured">
+            <div class="kb-property-card__img" style="background-image:url('https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600&auto=format&fit=crop')">
+              <span class="kb-property-card__status kb-property-card__status--sale">For Sale</span>
+              <span class="kb-property-card__type">4BHK Luxury Villa</span>
+            </div>
+            <div class="kb-property-card__body">
+              <h3>Kaveri Garden Villa</h3>
+              <p class="kb-property-card__loc"><i class="bi bi-geo-alt-fill"></i> Line Medu, Salem</p>
+              <div class="kb-property-card__specs">
+                <span><i class="bi bi-house"></i> 4 BHK</span>
+                <span><i class="bi bi-rulers"></i> 2,800 sq.ft</span>
+                <span><i class="bi bi-stars"></i> Premium Finish</span>
+              </div>
+              <div class="kb-property-card__price">₹ 95,00,000</div>
+              <a href="#contact" class="kb-btn kb-btn--primary w-100 mt-3">Enquire Now</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="kb-property-card">
+            <div class="kb-property-card__img" style="background-image:url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&auto=format&fit=crop')">
+              <span class="kb-property-card__status kb-property-card__status--rent">For Rent</span>
+              <span class="kb-property-card__type">2BHK House</span>
+            </div>
+            <div class="kb-property-card__body">
+              <h3>Laxmi Garden Home</h3>
+              <p class="kb-property-card__loc"><i class="bi bi-geo-alt-fill"></i> Suramangalam, Salem</p>
+              <div class="kb-property-card__specs">
+                <span><i class="bi bi-house"></i> 2 BHK</span>
+                <span><i class="bi bi-rulers"></i> 1,200 sq.ft</span>
+                <span><i class="bi bi-droplet"></i> Borewell</span>
+              </div>
+              <div class="kb-property-card__price">₹ 12,000 / mo</div>
+              <a href="#contact" class="kb-btn kb-btn--outline w-100 mt-3">Enquire Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Commercial -->
+    <div class="kb-re-panel d-none" id="tab-commercial">
+      <div class="row g-4">
+        <div class="col-12 col-md-4">
+          <div class="kb-property-card">
+            <div class="kb-property-card__img" style="background-image:url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&auto=format&fit=crop')">
+              <span class="kb-property-card__status kb-property-card__status--rent">For Rent</span>
+              <span class="kb-property-card__type">Office Space</span>
+            </div>
+            <div class="kb-property-card__body">
+              <h3>Salem City Centre Office</h3>
+              <p class="kb-property-card__loc"><i class="bi bi-geo-alt-fill"></i> Alagapuram Main Road</p>
+              <div class="kb-property-card__specs">
+                <span><i class="bi bi-rulers"></i> 800 sq.ft</span>
+                <span><i class="bi bi-lightning"></i> Power Backup</span>
+                <span><i class="bi bi-wifi"></i> Fiber Ready</span>
+              </div>
+              <div class="kb-property-card__price">₹ 22,000 / mo</div>
+              <a href="#contact" class="kb-btn kb-btn--outline w-100 mt-3">Enquire Now</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="kb-property-card kb-property-card--featured">
+            <div class="kb-property-card__img" style="background-image:url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&auto=format&fit=crop')">
+              <span class="kb-property-card__status kb-property-card__status--sale">For Sale</span>
+              <span class="kb-property-card__type">Commercial Building</span>
+            </div>
+            <div class="kb-property-card__body">
+              <h3>Salem Prime Commercial</h3>
+              <p class="kb-property-card__loc"><i class="bi bi-geo-alt-fill"></i> Omalur Road, Salem</p>
+              <div class="kb-property-card__specs">
+                <span><i class="bi bi-rulers"></i> 5,000 sq.ft</span>
+                <span><i class="bi bi-building"></i> G+2</span>
+                <span><i class="bi bi-check2-circle"></i> RERA Approved</span>
+              </div>
+              <div class="kb-property-card__price">₹ 1.8 Cr</div>
+              <a href="#contact" class="kb-btn kb-btn--primary w-100 mt-3">Enquire Now</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="kb-property-card">
+            <div class="kb-property-card__img" style="background-image:url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&auto=format&fit=crop')">
+              <span class="kb-property-card__status kb-property-card__status--rent">For Rent</span>
+              <span class="kb-property-card__type">Shop / Showroom</span>
+            </div>
+            <div class="kb-property-card__body">
+              <h3>Fairlands Corner Shop</h3>
+              <p class="kb-property-card__loc"><i class="bi bi-geo-alt-fill"></i> Fairlands, Salem</p>
+              <div class="kb-property-card__specs">
+                <span><i class="bi bi-rulers"></i> 450 sq.ft</span>
+                <span><i class="bi bi-signpost-2"></i> Main Road</span>
+                <span><i class="bi bi-car-front"></i> Parking</span>
+              </div>
+              <div class="kb-property-card__price">₹ 18,000 / mo</div>
+              <a href="#contact" class="kb-btn kb-btn--outline w-100 mt-3">Enquire Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RE CTA banner -->
+    <div class="kb-re-banner">
+      <div class="kb-re-banner__content">
+        <h3>Have a property to <em>sell or rent</em>?</h3>
+        <p>List with Krishna Builders and reach thousands of genuine buyers &amp; tenants in Salem.</p>
+        <a href="#contact" class="kb-btn kb-btn--primary">List Your Property</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ PROJECTS ══════════════════════════ -->
+<section class="kb-section kb-projects" id="projects">
+  <div class="kb-projects__bg"></div>
+  <div class="container position-relative">
+    <div class="kb-section__header kb-section__header--light">
+      <span class="kb-section__tag">Portfolio</span>
+      <h2 class="kb-section__title">Completed <em>Projects</em></h2>
+      <p class="kb-section__desc">Handcrafted homes that stand as testimonies to quality.</p>
+    </div>
+    <div class="row g-5">
+      <div class="col-12 col-md-4">
+        <div class="kb-project-card">
+          <div class="kb-project-card__img" style="background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&auto=format&fit=crop')">
+            <div class="kb-project-card__overlay">
+              <span class="kb-project-card__badge">Completed 2023</span>
+            </div>
+          </div>
+          <div class="kb-project-card__body">
+            <h3>Lakshmi Villa</h3>
+            <p>3BHK luxury residence with contemporary elevation and smart-home integration. 2,400 sqft, G+1 structure.</p>
+            <ul class="kb-project-card__meta">
+              <li><i class="bi bi-geo-alt-fill"></i> Fairlands, Salem</li>
+              <li><i class="bi bi-rulers"></i> 2,400 sq.ft</li>
+              <li><i class="bi bi-currency-rupee"></i> ₹48 Lakhs</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="kb-project-card kb-project-card--featured">
+          <div class="kb-project-card__img" style="background-image:url('https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&auto=format&fit=crop')">
+            <div class="kb-project-card__overlay">
+              <span class="kb-project-card__badge">Completed 2024</span>
+            </div>
+          </div>
+          <div class="kb-project-card__body">
+            <h3>Kaveri Garden Villa</h3>
+            <p>4BHK premium villa with rooftop terrace garden, modular kitchen, and full interior package. G+2 structure.</p>
+            <ul class="kb-project-card__meta">
+              <li><i class="bi bi-geo-alt-fill"></i> Shevapet, Salem</li>
+              <li><i class="bi bi-rulers"></i> 3,200 sq.ft</li>
+              <li><i class="bi bi-currency-rupee"></i> ₹72 Lakhs</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="kb-project-card">
+          <div class="kb-project-card__img" style="background-image:url('https://images.unsplash.com/photo-1572120360610-d971b9d7767c?w=800&auto=format&fit=crop')">
+            <div class="kb-project-card__overlay">
+              <span class="kb-project-card__badge">Completed 2024</span>
+            </div>
+          </div>
+          <div class="kb-project-card__body">
+            <h3>Arjuna Heritage Home</h3>
+            <p>Traditional Chettinad-inspired 2BHK with courtyard, wooden pillars, and modern structural reinforcements.</p>
+            <ul class="kb-project-card__meta">
+              <li><i class="bi bi-geo-alt-fill"></i> Line Medu, Salem</li>
+              <li><i class="bi bi-rulers"></i> 1,800 sq.ft</li>
+              <li><i class="bi bi-currency-rupee"></i> ₹36 Lakhs</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="kb-stats">
+      <div class="kb-stat"><span class="kb-stat__num" data-target="120">0</span><span class="kb-stat__plus">+</span><p>Projects Delivered</p></div>
+      <div class="kb-stat"><span class="kb-stat__num" data-target="8">0</span><span class="kb-stat__plus">+</span><p>Years Experience</p></div>
+      <div class="kb-stat"><span class="kb-stat__num" data-target="98">0</span><span class="kb-stat__plus">%</span><p>Client Satisfaction</p></div>
+      <div class="kb-stat"><span class="kb-stat__num" data-target="200">0</span><span class="kb-stat__plus">+</span><p>Properties Sold</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ QUOTATION ══════════════════════════ -->
+<section class="kb-section kb-quotation" id="quotation">
+  <div class="container">
+    <div class="kb-section__header">
+      <span class="kb-section__tag">Pricing</span>
+      <h2 class="kb-section__title">Construction <em>Quotation</em></h2>
+      <p class="kb-section__desc">Transparent, competitive pricing for every project tier. All rates include labour &amp; materials (Salem region).</p>
+    </div>
+    <div class="row g-4 mb-5">
+      <div class="col-12 col-md-4">
+        <div class="kb-price-card">
+          <div class="kb-price-card__head">
+            <span class="kb-price-card__tier">Essential</span>
+            <div class="kb-price-card__rate">₹1,650<span>/sqft</span></div>
+            <p>For budget-conscious builds with durable basic finishes</p>
+          </div>
+          <ul class="kb-price-card__features">
+            <li><i class="bi bi-check2"></i> Approval Plan</li>
+            <li><i class="bi bi-check2"></i> 2D Floor Plan</li>
+            <li><i class="bi bi-check2"></i> Basic Elevation Design</li>
+            <li><i class="bi bi-check2"></i> Standard Estimation</li>
+            <li><i class="bi bi-check2"></i> Structural Design</li>
+            <li class="kb-price-card__feat--off"><i class="bi bi-x"></i> 3D Visualisation</li>
+            <li class="kb-price-card__feat--off"><i class="bi bi-x"></i> Interior Design</li>
+          </ul>
+          <a href="#contact" class="kb-btn kb-btn--outline w-100">Get Quote</a>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="kb-price-card kb-price-card--popular">
+          <div class="kb-price-card__ribbon">Most Popular</div>
+          <div class="kb-price-card__head">
+            <span class="kb-price-card__tier">Premium</span>
+            <div class="kb-price-card__rate">₹2,200<span>/sqft</span></div>
+            <p>Quality construction with designer finishes &amp; 3D planning</p>
+          </div>
+          <ul class="kb-price-card__features">
+            <li><i class="bi bi-check2"></i> Approval Plan</li>
+            <li><i class="bi bi-check2"></i> 2D &amp; 3D Plan</li>
+            <li><i class="bi bi-check2"></i> Elevation Design</li>
+            <li><i class="bi bi-check2"></i> Detailed Estimation</li>
+            <li><i class="bi bi-check2"></i> Structural Design</li>
+            <li><i class="bi bi-check2"></i> 3D Visualisation</li>
+            <li class="kb-price-card__feat--off"><i class="bi bi-x"></i> Full Interior Package</li>
+          </ul>
+          <a href="#contact" class="kb-btn kb-btn--primary w-100">Get Quote</a>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="kb-price-card">
+          <div class="kb-price-card__head">
+            <span class="kb-price-card__tier">Luxury</span>
+            <div class="kb-price-card__rate">₹3,000<span>/sqft</span></div>
+            <p>Premium villa experience with complete interior &amp; smart home</p>
+          </div>
+          <ul class="kb-price-card__features">
+            <li><i class="bi bi-check2"></i> Approval Plan</li>
+            <li><i class="bi bi-check2"></i> 2D &amp; 3D Plan</li>
+            <li><i class="bi bi-check2"></i> Premium Elevation</li>
+            <li><i class="bi bi-check2"></i> Full Estimation</li>
+            <li><i class="bi bi-check2"></i> Structural Design</li>
+            <li><i class="bi bi-check2"></i> 3D Visualisation</li>
+            <li><i class="bi bi-check2"></i> Full Interior Design</li>
+          </ul>
+          <a href="#contact" class="kb-btn kb-btn--outline w-100">Get Quote</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="kb-quote-table-wrap">
+      <h3 class="kb-quote-table-wrap__title">Sample Project Cost Breakdown <span>(Essential Tier · Salem)</span></h3>
+      <div class="table-responsive">
+        <table class="table kb-quote-table">
+          <thead>
+            <tr>
+              <th>Item</th><th>Unit</th><th>Rate (₹)</th><th>Qty (1500 sqft home)</th><th>Amount (₹)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Foundation &amp; Footing</td><td>sqft</td><td>180</td><td>1,500</td><td>2,70,000</td></tr>
+            <tr><td>RCC Frame Structure</td><td>sqft</td><td>380</td><td>1,500</td><td>5,70,000</td></tr>
+            <tr><td>Brickwork &amp; Masonry</td><td>sqft</td><td>220</td><td>1,500</td><td>3,30,000</td></tr>
+            <tr><td>Plastering &amp; Waterproofing</td><td>sqft</td><td>110</td><td>1,500</td><td>1,65,000</td></tr>
+            <tr><td>Flooring (Vitrified Tiles)</td><td>sqft</td><td>120</td><td>1,500</td><td>1,80,000</td></tr>
+            <tr><td>Doors &amp; Windows</td><td>Nos</td><td>18,000</td><td>12</td><td>2,16,000</td></tr>
+            <tr><td>Electrical &amp; Plumbing</td><td>sqft</td><td>180</td><td>1,500</td><td>2,70,000</td></tr>
+            <tr><td>Painting (2 coat)</td><td>sqft</td><td>55</td><td>1,500</td><td>82,500</td></tr>
+            <tr class="kb-quote-table__total"><td colspan="4"><strong>Estimated Total</strong></td><td><strong>₹20,83,500</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="kb-quote-note">* Rates are indicative. Actual costs depend on design complexity, site conditions, and material selection. Contact us for a precise quote.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ CONTACT ══════════════════════════ -->
+<section class="kb-section kb-contact" id="contact">
+  <div class="kb-contact__bg"></div>
+  <div class="container position-relative">
+    <div class="kb-section__header kb-section__header--light">
+      <span class="kb-section__tag">Get In Touch</span>
+      <h2 class="kb-section__title">Start Your <em>Dream</em></h2>
+      <p class="kb-section__desc">Reach out and let's build something extraordinary together.</p>
+    </div>
+
+    <!-- AI Chat Assistant Banner -->
+    <div class="kb-ai-banner">
+      <div class="kb-ai-banner__icon"><i class="bi bi-robot"></i></div>
+      <div class="kb-ai-banner__text">
+        <h4>Chat with our AI Assistant</h4>
+        <p>Ask anything about construction, real estate, pricing, or availability — instant answers 24/7.</p>
+      </div>
+      <button class="kb-btn kb-btn--primary" id="openChatBtn">Open AI Chat</button>
+    </div>
+
+    <!-- AI Chat Box -->
+    <div class="kb-chat-box d-none" id="chatBox">
+      <div class="kb-chat-box__header">
+        <div class="kb-chat-box__avatar"><i class="bi bi-robot"></i></div>
+        <div>
+          <h5>Krishna Builders Assistant</h5>
+          <span>Powered by AI · Online</span>
+        </div>
+        <button class="kb-chat-box__close" id="closeChatBtn"><i class="bi bi-x-lg"></i></button>
+      </div>
+      <div class="kb-chat-box__messages" id="chatMessages">
+        <div class="kb-chat-msg kb-chat-msg--bot">
+          <div class="kb-chat-msg__bubble">
+            👋 Hello! I'm the Krishna Builders AI assistant. Ask me about construction services, real estate listings, pricing, or anything else. How can I help you today?
+          </div>
+        </div>
+      </div>
+      <div class="kb-chat-box__input-row">
+        <input type="text" id="chatInput" class="kb-chat-input" placeholder="Type your question…" />
+        <button class="kb-chat-send" id="chatSend"><i class="bi bi-send-fill"></i></button>
+      </div>
+    </div>
+
+    <div class="row g-5 align-items-start mt-2">
+      <!-- Info -->
+      <div class="col-12 col-lg-5">
+        <div class="kb-contact__info">
+          <div class="kb-contact__info-card">
+            <i class="bi bi-telephone-fill"></i>
+            <div><h4>Phone</h4><a href="tel:+917708172800">+91 7708172800</a></div>
+          </div>
+          <div class="kb-contact__info-card">
+            <i class="bi bi-envelope-fill"></i>
+            <div><h4>Email</h4><a href="mailto:krishcivil1697@gmail.com">krishcivil1697@gmail.com</a></div>
+          </div>
+          <div class="kb-contact__info-card">
+            <i class="bi bi-instagram"></i>
+            <div><h4>Instagram</h4><a href="https://instagram.com/krishna_builders_1" target="_blank">@krishna_builders_1</a></div>
+          </div>
+          <div class="kb-contact__info-card">
+            <i class="bi bi-geo-alt-fill"></i>
+            <div><h4>Office</h4><p>14, Dharmalingam St No 2,<br/>Line Medu, Salem – 636 006</p></div>
+          </div>
+          <div class="kb-contact__hours">
+            <h4><i class="bi bi-clock"></i> Working Hours</h4>
+            <p>Mon – Sat &nbsp;|&nbsp; 9:00 AM – 7:00 PM</p>
+            <p>Sunday &nbsp;|&nbsp; By Appointment</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="col-12 col-lg-7">
+        <div class="kb-contact__form-wrap">
+
+          <!-- Form Tabs -->
+          <div class="kb-form-tabs">
+            <button class="kb-form-tab active" data-form="construction">
+              <i class="bi bi-building"></i> Construction Enquiry
+            </button>
+            <button class="kb-form-tab" data-form="realestate">
+              <i class="bi bi-house-door"></i> Real Estate Enquiry
+            </button>
+          </div>
+
+          <!-- Construction Form -->
+          <form id="constructionForm" class="kb-form-panel" novalidate>
+            <div class="row g-3">
+              <div class="col-12 col-sm-6">
+                <label class="kb-label">Full Name *</label>
+                <input type="text" class="kb-input" id="cName" placeholder="Your name" required />
+              </div>
+              <div class="col-12 col-sm-6">
+                <label class="kb-label">Phone *</label>
+                <input type="tel" class="kb-input" id="cPhone" placeholder="+91 XXXXX XXXXX" required />
+              </div>
+              <div class="col-12">
+                <label class="kb-label">Email</label>
+                <input type="email" class="kb-input" id="cEmail" placeholder="your@email.com" />
+              </div>
+              <div class="col-12">
+                <label class="kb-label">Service Required *</label>
+                <select class="kb-input" id="cService" required>
+                  <option value="">Select a service…</option>
+                  <option>Approval Plan</option>
+                  <option>2D &amp; 3D Plan</option>
+                  <option>Estimation</option>
+                  <option>Elevation Design</option>
+                  <option>Building Consultant</option>
+                  <option>Structural Design</option>
+                  <option>Building Interior Design</option>
+                  <option>Land Survey</option>
+                  <option>Full Construction Package</option>
+                </select>
+              </div>
+              <div class="col-12 col-sm-6">
+                <label class="kb-label">Plot / Project Area (sqft)</label>
+                <input type="text" class="kb-input" id="cArea" placeholder="e.g. 1500 sqft" />
+              </div>
+              <div class="col-12 col-sm-6">
+                <label class="kb-label">Budget (₹)</label>
+                <select class="kb-input" id="cBudget">
+                  <option value="">Select budget range</option>
+                  <option>Under ₹20 Lakhs</option>
+                  <option>₹20 – 40 Lakhs</option>
+                  <option>₹40 – 70 Lakhs</option>
+                  <option>₹70 Lakhs – 1 Cr</option>
+                  <option>Above ₹1 Cr</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <label class="kb-label">Message *</label>
+                <textarea class="kb-input" id="cMsg" rows="4" placeholder="Describe your project or requirements…" required></textarea>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="kb-btn kb-btn--primary w-100 kb-btn--lg">
+                  <i class="bi bi-send-fill me-2"></i>Send Construction Enquiry
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <!-- Real Estate Form -->
+          <form id="realestateForm" class="kb-form-panel d-none" novalidate>
+            <div class="row g-3">
+              <div class="col-12 col-sm-6">
+                <label class="kb-label">Full Name *</label>
+                <input type="text" class="kb-input" id="reName" placeholder="Your name" required />
+              </div>
+              <div class="col-12 col-sm-6">
+                <label class="kb-label">Phone *</label>
+                <input type="tel" class="kb-input" id="rePhone" placeholder="+91 XXXXX XXXXX" required />
+              </div>
+              <div class="col-12">
+                <label class="kb-label">Email</label>
+                <input type="email" class="kb-input" id="reEmail" placeholder="your@email.com" />
+              </div>
+              <div class="col-12 col-sm-6">
+                <label class="kb-label">I Want To *</label>
+                <select class="kb-input" id="reIntent" required>
+                  <option value="">Select…</option>
+                  <option>Buy Property</option>
+                  <option>Sell Property</option>
+                  <option>Rent a Property</option>
+                  <option>List for Rent</option>
+                </select>
+              </div>
+              <div class="col-12 col-sm-6">
+                <label class="kb-label">Property Type *</label>
+                <select class="kb-input" id="rePropType" required>
+                  <option value="">Select type…</option>
+                  <option>Plot / Land</option>
+                  <option>Villa / House</option>
+                  <option>Apartment / Flat</option>
+                  <option>Commercial Space</option>
+                  <option>Agricultural Land</option>
+                </select>
+              </div>
+              <div class="col-12 col-sm-6">
+                <label class="kb-label">Preferred Location</label>
+                <input type="text" class="kb-input" id="reLocation" placeholder="e.g. Fairlands, Salem" />
+              </div>
+              <div class="col-12 col-sm-6">
+                <label class="kb-label">Budget / Expected Price (₹)</label>
+                <select class="kb-input" id="reBudget">
+                  <option value="">Select budget</option>
+                  <option>Under ₹20 Lakhs</option>
+                  <option>₹20 – 50 Lakhs</option>
+                  <option>₹50 Lakhs – 1 Cr</option>
+                  <option>₹1 Cr – 2 Cr</option>
+                  <option>Above ₹2 Cr</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <label class="kb-label">Additional Details</label>
+                <textarea class="kb-input" id="reMsg" rows="4" placeholder="BHK preference, facing direction, amenities needed, timeline…"></textarea>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="kb-btn kb-btn--gold w-100 kb-btn--lg">
+                  <i class="bi bi-house-check-fill me-2"></i>Send Real Estate Enquiry
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <div id="formSuccess" class="kb-contact__success d-none">
+            <i class="bi bi-check-circle-fill"></i>
+            <h4>Thank You!</h4>
+            <p>Your enquiry has been received. Er. K.S. Krishna will contact you within 24 hours.</p>
+            <button class="kb-btn kb-btn--ghost mt-3" id="formReset">Send Another Enquiry</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ FOOTER ══════════════════════════ -->
+<footer class="kb-footer">
+  <div class="container">
+    <div class="kb-footer__top">
+      <div class="kb-footer__brand">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23b8952a'/%3E%3Ctext x='50' y='68' font-size='52' text-anchor='middle' fill='%23fff' font-family='Arial' font-weight='bold'%3EKB%3C/text%3E%3C/svg%3E" alt="Krishna Builders" class="kb-footer__logo-img" />
+        <p>Build Your Dream · Construction &amp; Real Estate · Salem, TN</p>
+        <p class="kb-footer__tagline"><em>"Your Vision, Our Expertise"</em></p>
+      </div>
+      <div class="kb-footer__links">
+        <h5>Quick Links</h5>
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#realestate">Real Estate</a>
+        <a href="#projects">Projects</a>
+        <a href="#quotation">Quotation</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="kb-footer__contact">
+        <h5>Contact</h5>
+        <p><i class="bi bi-telephone"></i> +91 7708172800</p>
+        <p><i class="bi bi-envelope"></i> krishcivil1697@gmail.com</p>
+        <p><i class="bi bi-instagram"></i> @krishna_builders_1</p>
+        <p><i class="bi bi-geo-alt"></i> Line Medu, Salem 636 006</p>
+      </div>
+    </div>
+    <div class="kb-footer__bottom">
+      <p>&copy; 2025 Krishna Builders &amp; Real Estate · Er. K.S. Krishna B.E., Civil Engineer &amp; Licensed Building Surveyor · Salem</p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Configuration (add your API keys here if needed)
+  window.KB_CONFIG = {
+    ANTHROPIC_API_KEY: "",   // Add your Anthropic API key for AI chat
+    EMAILJS_SERVICE_ID: "",
+    EMAILJS_TEMPLATE_ID: "",
+    EMAILJS_USER_ID: ""
+  };
+
+  // ── Navbar scroll behaviour ────────────────────
+  const mainNav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    mainNav.classList.toggle('scrolled', window.scrollY > 40);
+    highlightNavLink();
+  });
+
+  // ── Mobile nav toggle ──────────────────────────
+  const navToggle = document.getElementById('navToggle');
+  const navLinks  = document.getElementById('navLinks');
+  if (navToggle) {
+    navToggle.addEventListener('click', () => {
+      navToggle.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('.kb-nav__link').forEach(link => {
+      link.addEventListener('click', () => {
+        navToggle.classList.remove('open');
+        navLinks.classList.remove('open');
+      });
+    });
+  }
+
+  // ── Active nav link on scroll ──────────────────
+  const sections = document.querySelectorAll('section[id]');
+  const navLinkEls = document.querySelectorAll('.kb-nav__link');
+
+  function highlightNavLink() {
+    const scrollY = window.scrollY + 100;
+    sections.forEach(sec => {
+      const top    = sec.offsetTop;
+      const height = sec.offsetHeight;
+      const id     = sec.getAttribute('id');
+      const link   = document.querySelector(`.kb-nav__link[href="#${id}"]`);
+      if (link) {
+        if (scrollY >= top && scrollY < top + height) {
+          navLinkEls.forEach(l => l.classList.remove('active'));
+          link.classList.add('active');
+        }
+      }
+    });
+  }
+
+  // ── Scroll-reveal (IntersectionObserver) ───────
+  const srEls = document.querySelectorAll('.kb-service-card, .kb-project-card, .kb-price-card, .kb-quote-table-wrap, .kb-contact__info-card, .kb-contact__hours, .kb-contact__form-wrap, .kb-stat');
+
+  const srObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const delay = el.dataset.delay ? parseFloat(el.dataset.delay) * 0.1 : 0;
+        setTimeout(() => {
+          el.style.opacity    = '1';
+          el.style.transform  = 'translateY(0)';
+        }, delay * 1000);
+        srObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  srEls.forEach(el => {
+    el.style.opacity   = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'opacity .65s ease, transform .65s ease';
+    srObserver.observe(el);
+  });
+
+  // ── Animated counter (stats section) ──────────
+  const statNums = document.querySelectorAll('.kb-stat__num');
+  let statsDone  = false;
+
+  function animateCounters() {
+    statNums.forEach(el => {
+      const target  = parseInt(el.dataset.target, 10);
+      const duration = 1800;
+      const step     = 16;
+      const increment = target / (duration / step);
+      let current = 0;
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          el.textContent = target;
+          clearInterval(timer);
+        } else {
+          el.textContent = Math.floor(current);
+        }
+      }, step);
+    });
+  }
+
+  const statsSection = document.querySelector('.kb-stats');
+  if (statsSection) {
+    const statsObserver = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting && !statsDone) {
+        statsDone = true;
+        animateCounters();
+      }
+    }, { threshold: 0.3 });
+    statsObserver.observe(statsSection);
+  }
+
+  // ── Real Estate Tabs ───────────────────────────
+  const reTabs = document.querySelectorAll('.kb-re-tab');
+  const panels = {
+    plots: document.getElementById('tab-plots'),
+    villas: document.getElementById('tab-villas'),
+    commercial: document.getElementById('tab-commercial')
+  };
+
+  reTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const targetTab = tab.dataset.tab;
+      reTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      Object.keys(panels).forEach(key => {
+        if (panels[key]) panels[key].classList.add('d-none');
+      });
+      if (panels[targetTab]) panels[targetTab].classList.remove('d-none');
+    });
+  });
+
+  // ── Form Tabs ──────────────────────────────────
+  const formTabs = document.querySelectorAll('.kb-form-tab');
+  const constructionForm = document.getElementById('constructionForm');
+  const realestateForm = document.getElementById('realestateForm');
+  const formSuccessDiv = document.getElementById('formSuccess');
+  const formResetBtn = document.getElementById('formReset');
+
+  formTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const formType = tab.dataset.form;
+      formTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      if (formType === 'construction') {
+        constructionForm.classList.remove('d-none');
+        realestateForm.classList.add('d-none');
+        if (formSuccessDiv) formSuccessDiv.classList.add('d-none');
+      } else {
+        constructionForm.classList.add('d-none');
+        realestateForm.classList.remove('d-none');
+        if (formSuccessDiv) formSuccessDiv.classList.add('d-none');
+      }
+    });
+  });
+
+  // ── Form submission handlers ───────────────────
+  function showToast(message, type = 'info') {
+    const existing = document.querySelector('.kb-toast');
+    if (existing) existing.remove();
+    const toast = document.createElement('div');
+    toast.className = 'kb-toast';
+    toast.style.backgroundColor = type === 'error' ? '#b91c1c' : '#2d7a3a';
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    setTimeout(() => { toast.style.opacity = '0'; toast.style.transition = 'opacity .4s'; setTimeout(() => toast.remove(), 400); }, 3400);
+  }
+
+  function shakeForm(wrap) {
+    wrap.style.animation = 'shake .4s ease';
+    setTimeout(() => { wrap.style.animation = ''; }, 420);
+  }
+
+  // Construction Form Submit
+  if (constructionForm) {
+    constructionForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('cName').value.trim();
+      const phone = document.getElementById('cPhone').value.trim();
+      const service = document.getElementById('cService').value;
+      const msg = document.getElementById('cMsg').value.trim();
+
+      if (!name || !phone || !service || !msg) {
+        shakeForm(document.querySelector('.kb-contact__form-wrap'));
+        showToast('Please fill in all required fields.', 'error');
+        return;
+      }
+      if (!/^\+?[\d\s\-()]{7,15}$/.test(phone)) {
+        showToast('Please enter a valid phone number.', 'error');
+        return;
+      }
+
+      const btn = constructionForm.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Sending…';
+
+      setTimeout(() => {
+        constructionForm.classList.add('d-none');
+        if (formSuccessDiv) formSuccessDiv.classList.remove('d-none');
+        btn.disabled = false;
+        btn.innerHTML = '<i class="bi bi-send-fill me-2"></i>Send Construction Enquiry';
+      }, 1600);
+    });
+  }
+
+  // Real Estate Form Submit
+  if (realestateForm) {
+    realestateForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('reName').value.trim();
+      const phone = document.getElementById('rePhone').value.trim();
+      const intent = document.getElementById('reIntent').value;
+      const propType = document.getElementById('rePropType').value;
+
+      if (!name || !phone || !intent || !propType) {
+        shakeForm(document.querySelector('.kb-contact__form-wrap'));
+        showToast('Please fill in all required fields.', 'error');
+        return;
+      }
+      if (!/^\+?[\d\s\-()]{7,15}$/.test(phone)) {
+        showToast('Please enter a valid phone number.', 'error');
+        return;
+      }
+
+      const btn = realestateForm.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Sending…';
+
+      setTimeout(() => {
+        realestateForm.classList.add('d-none');
+        if (formSuccessDiv) formSuccessDiv.classList.remove('d-none');
+        btn.disabled = false;
+        btn.innerHTML = '<i class="bi bi-house-check-fill me-2"></i>Send Real Estate Enquiry';
+      }, 1600);
+    });
+  }
+
+  // Form Reset
+  if (formResetBtn) {
+    formResetBtn.addEventListener('click', () => {
+      if (formSuccessDiv) formSuccessDiv.classList.add('d-none');
+      if (constructionForm && !constructionForm.classList.contains('d-none')) {
+        constructionForm.classList.remove('d-none');
+        constructionForm.reset();
+      } else if (realestateForm) {
+        realestateForm.classList.remove('d-none');
+        realestateForm.reset();
+      }
+    });
+  }
+
+  // ── Smooth section offset for fixed nav ───────
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (!target) return;
+      e.preventDefault();
+      const offset = mainNav ? mainNav.offsetHeight + 12 : 80;
+      const top    = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    });
+  });
+
+  // ── 3D tilt on project cards ───────────────────
+  document.querySelectorAll('.kb-project-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width  - 0.5) * 10;
+      const y = ((e.clientY - rect.top)  / rect.height - 0.5) * -10;
+      card.style.transform = `perspective(800px) rotateX(${y}deg) rotateY(${x}deg) translateY(-10px)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+      card.style.transition = 'transform .5s ease';
+    });
+    card.addEventListener('mouseenter', () => {
+      card.style.transition = 'transform .1s linear';
+    });
+  });
+
+  // ── Service card tilt ────────────────────────
+  document.querySelectorAll('.kb-service-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width  - 0.5) * 8;
+      const y = ((e.clientY - rect.top)  / rect.height - 0.5) * -8;
+      card.style.transform = `perspective(600px) rotateX(${y}deg) rotateY(${x}deg) translateY(-8px) scale(1.01)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+      card.style.transition = 'transform .5s ease, box-shadow .4s';
+    });
+    card.addEventListener('mouseenter', () => {
+      card.style.transition = 'transform .08s linear, box-shadow .4s';
+    });
+  });
+
+  // ── Hero parallax ──────────────────────────────
+  const heroBg = document.querySelector('.kb-hero__bg');
+  window.addEventListener('scroll', () => {
+    if (!heroBg) return;
+    const y = window.scrollY;
+    heroBg.style.transform = `translateY(${y * 0.3}px)`;
+  });
+
+  // ── AI Chat Box functionality ──────────────────
+  const openChatBtn = document.getElementById('openChatBtn');
+  const closeChatBtn = document.getElementById('closeChatBtn');
+  const chatBox = document.getElementById('chatBox');
+  const chatInput = document.getElementById('chatInput');
+  const chatSend = document.getElementById('chatSend');
+  const chatMessages = document.getElementById('chatMessages');
+
+  if (openChatBtn && closeChatBtn && chatBox) {
+    openChatBtn.addEventListener('click', () => {
+      chatBox.classList.remove('d-none');
+    });
+    closeChatBtn.addEventListener('click', () => {
+      chatBox.classList.add('d-none');
+    });
+
+    function addUserMessage(message) {
+      const msgDiv = document.createElement('div');
+      msgDiv.className = 'kb-chat-msg kb-chat-msg--user';
+      msgDiv.innerHTML = `<div class="kb-chat-msg__bubble">${message}</div>`;
+      chatMessages.appendChild(msgDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function addBotMessage(message) {
+      const msgDiv = document.createElement('div');
+      msgDiv.className = 'kb-chat-msg kb-chat-msg--bot';
+      msgDiv.innerHTML = `<div class="kb-chat-msg__bubble">${message}</div>`;
+      chatMessages.appendChild(msgDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function showTyping() {
+      const typingDiv = document.createElement('div');
+      typingDiv.className = 'kb-chat-msg kb-chat-msg--bot kb-chat-msg--typing';
+      typingDiv.id = 'typingIndicator';
+      typingDiv.innerHTML = `<div class="kb-chat-msg__bubble"><span class="kb-typing-dot"></span><span class="kb-typing-dot"></span><span class="kb-typing-dot"></span></div>`;
+      chatMessages.appendChild(typingDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function hideTyping() {
+      const typing = document.getElementById('typingIndicator');
+      if (typing) typing.remove();
+    }
+
+    // Simple response logic (mock AI)
+    function getAIResponse(message) {
+      const msg = message.toLowerCase();
+      if (msg.includes('price') || msg.includes('cost') || msg.includes('rate')) {
+        return "Our construction rates start from ₹1,650 per sqft for Essential tier, ₹2,200 for Premium, and ₹3,000 for Luxury. Would you like a detailed quote?";
+      } else if (msg.includes('service') || msg.includes('do you')) {
+        return "We offer Approval Plans, 2D/3D Plans, Estimation, Elevation Design, Building Consulting, Structural Design, Interior Design, and Land Survey services.";
+      } else if (msg.includes('plot') || msg.includes('land') || msg.includes('property')) {
+        return "We have residential plots starting from ₹18 lakhs, villas from ₹58 lakhs, and commercial spaces available. Which type are you interested in?";
+      } else if (msg.includes('contact') || msg.includes('phone') || msg.includes('email')) {
+        return "You can reach us at +91 7708172800 or email krishcivil1697@gmail.com. Our office is at Line Medu, Salem.";
+      } else {
+        return "Thank you for your message! Our team will get back to you shortly. For immediate assistance, please call +91 7708172800.";
+      }
+    }
+
+    async function sendMessage() {
+      const message = chatInput.value.trim();
+      if (!message) return;
+
+      addUserMessage(message);
+      chatInput.value = '';
+      showTyping();
+
+      setTimeout(() => {
+        hideTyping();
+        const response = getAIResponse(message);
+        addBotMessage(response);
+      }, 1000);
+    }
+
+    if (chatSend) {
+      chatSend.addEventListener('click', sendMessage);
+    }
+    if (chatInput) {
+      chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') sendMessage();
+      });
+    }
+  }
+</script>
 </body>
 </html>
